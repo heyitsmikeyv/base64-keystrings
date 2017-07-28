@@ -32,9 +32,18 @@ else:
 	print("No input identified. Use [-h] or [--help] for more information.")
 	exit()
 
+# It is impossible to generate key strings for an input fewer than five characters.
+# Additionally, the strings generated for inputs of fewer than eight characters are not particularly useful.
+
+if len(target) < 5:
+	print("It is not possible to generate key strings for phrases shorter than 5 characters.")
+	exit()
+elif len(target) < 8:
+	print("Warning: Inputs of fewer than eight characters generate questionably useful key strings. Beware of false positives when using these.")
+
+
+
 # Now that we've landed on our target string, we break it into character triads
-
-
 def triads(string):
 	""" Break a given string into a list of three-character triads."""
 	return [string[i:i + 3] for i in range(0, len(string), 3)]
