@@ -59,4 +59,4 @@ eval(base64_decode(Ly8gSGFoYSB0aGV5J2xsIG5ldmVyIGZpbmQgbWUhCmhhY2tpbmdNYWluZnJhb
 As we can see, the string "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" was identified in the file! Applied against a large PHP framework where a code injection could be in a huge assortment of locations, recursive searches could be performed with the generated key strings to assist in locating obfuscated code. 
 
 ### Upcoming Features
-- [] Add file search features to the script so manual grepping is no longer required
+[] Add file search features to the script so manual grepping is no longer required
