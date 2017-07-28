@@ -92,9 +92,3 @@ for i in range(0, len(padding)):
 for i in range(0, len(keystrings)):
 	keystrings[i] = keystrings[i].encode('base64')
 	print(keystrings[i]),
-
-'''
-print("Calculated key strings:")
-for i in padding:
-	print(i.encode('base64')),
-	'''
