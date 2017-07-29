@@ -61,3 +61,4 @@ As we can see, the string "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" was identified in t
 
 ### Upcoming Features
 - [ ] Add file search features to the script so manual grepping is no longer required
+- [ ] Add a flag to generate additional key strings for rot13, strrev, etc.
