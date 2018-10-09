@@ -1,9 +1,9 @@
 # base64-keystrings.py
 ## Find key search strings to locate base64-encoded versions of ASCII strings.
 
-*For a detailed breakdown of what this tool is built to accomplish, please see the article on my [blog](https://s7n.co/b64strings)*
+*For a detailed breakdown of what this tool is built to accomplish, please see the article on my [blog](https://michaelveenstra.com/2017/07/27/searching-for-phrases-in-base64-encoded-strings/)*
 
-When working with obfuscated files (esp. PHP), it's common to find large blocks of base64-encoded code. It's not always possible to programmatically identify, decode, and subsequently test internal base64 blocks when looking for a particular string. This utility can be used to generate the three possible key strings of your intended search pattern (For an explanation of why there are always three strings, where they come from, etc, see my [article](https://s7n.co/b64strings)). Depending on the character count preceding the position of your search term in a file, one of the generated key strings will be present in the base64 block. 
+When working with obfuscated files (esp. PHP), it's common to find large blocks of base64-encoded code. It's not always possible to programmatically identify, decode, and subsequently test internal base64 blocks when looking for a particular string. This utility can be used to generate the three possible key strings of your intended search pattern (For an explanation of why there are always three strings, where they come from, etc, see my [article](https://michaelveenstra.com/2017/07/27/searching-for-phrases-in-base64-encoded-strings/)). Depending on the character count preceding the position of your search term in a file, one of the generated key strings will be present in the base64 block. 
 
 ### Usage
 
