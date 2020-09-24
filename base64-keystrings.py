@@ -80,12 +80,12 @@ for i in range(0, len(padding)):
 	# Loop through all three lists to clean them up.
 	if args.debug is True:
 		print("Cleaning up padding[%d]") % (i)
-	if i is not 0:
+	if i != 0:
 		# Not including padding[0], drop the first item from the list
 		if args.debug is True:
 			print("Dropping first triad of padding[%d]: '%s'") % (i, padding[i][0])
 		del padding[i][0]
-	if len(padding[i][-1]) is not 3:
+	if len(padding[i][-1]) != 3:
 		# If the final triad in a set is not 3 characters long, drop it.
 		if args.debug is True:
 			print("Dropping incomplete final triad from padding[%d]: %s") % (i, repr(padding[i][-1]))
