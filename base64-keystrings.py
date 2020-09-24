@@ -1,9 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 """ Generate key base64 strings of a given input. 
 The generated key strings can then be used for searching within base64-encoded data 
 for the presence of the given search target.
 """
-import sys, argparse
+import sys, argparse, base64
 
 # Begin handling arguments.
 parser = argparse.ArgumentParser(description="Generate key base64 strings based on a given input. Returns three strings.", epilog="For complete details, please visit: http://s7n.co/b64strings")
@@ -80,12 +80,12 @@ for i in range(0, len(padding)):
 	# Loop through all three lists to clean them up.
 	if args.debug is True:
 		print("Cleaning up padding[%d]") % (i)
-	if i is not 0:
+	if i != 0:
 		# Not including padding[0], drop the first item from the list
 		if args.debug is True:
 			print("Dropping first triad of padding[%d]: '%s'") % (i, padding[i][0])
 		del padding[i][0]
-	if len(padding[i][-1]) is not 3:
+	if len(padding[i][-1]) != 3:
 		# If the final triad in a set is not 3 characters long, drop it.
 		if args.debug is True:
 			print("Dropping incomplete final triad from padding[%d]: %s") % (i, repr(padding[i][-1]))
@@ -97,7 +97,6 @@ for i in range(0, len(padding)):
 	keystrings.append(padding[i])
 	
 
-# Base64-encode the calculated keystrings
 for i in range(0, len(keystrings)):
-	keystrings[i] = keystrings[i].encode('base64')
-	print(keystrings[i]),
+	keystrings[i] = base64.b64encode(bytes(keystrings[i], 'utf-8'))
+	print(str(keystrings[i], "utf-8"))
